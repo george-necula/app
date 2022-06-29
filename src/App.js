@@ -1,18 +1,22 @@
 import React from 'react'
-import {ToDoWithClassComponent,CounterWithClass} from './class.jsx'
-import {ToDoWithFunctionalComponent, CounterWithUseState} from './functional'
 import './styles/App.css'
+
+//custom componenet
+import ClassComponent from './class.jsx'
+import {ToDoWithFunctionalComponent, CounterWithUseState} from './functional'
+
 
 
 function App() {
+
   return (
     <div id='mainBody'>
       <CounterWithUseState />
-      <CounterWithClass />
+      <ClassComponent.CounterWithClass />
       <ToDoWithFunctionalComponent />
-      <ToDoWithClassComponent />
+      <ClassComponent.ToDoWithClassComponent />
     </div>
   );
 }
 
-export default App;
+export default App 

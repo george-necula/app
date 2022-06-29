@@ -1,42 +1,60 @@
 import React from 'react'
+import { connect } from 'react-redux/'
 
+
+const  mapStateToPropsTask = (state) => {
+  const taskList = state.taskList;
+  return {
+    taskList
+  };
+}
+
+const mapDispatchToPropsTask = dispatch => ({
+  addTask: (item) => dispatch({ type: 'ADD_TASK' , payload: item}),
+  removeTask: (item) => dispatch({ type: 'REMOVE_TASK', payload: item }),
+  clearTasks: () => dispatch({type: 'CLEAR_TASKS'})
+ })
 
 class ToDoWithClassComponent extends React.Component{
-  constructor(props){
-    super(props)
-    this.state = {toDos : []}
+  // constructor(props){
+  //   super(props)
+  //   // this.state = {toDos : []}
+  // }
+
+  generateKey = (pre) => {
+    return `${pre}_${new Date().getTime()}`;
   }
-  
+
   addElementToList(e){
     // console.log(e.target.value)
     if (e.key === "Enter" && e.target.value) {
-      this.setState({toDos: [...this.state.toDos, e.target.value]} )
-      console.log('added : ', e.target.value )
+      this.props.addTask({id: this.generateKey(e.target.value), task: e.target.value})
+      // console.log('added : ', e.target.value )
       e.target.value = ''
     }
   }
   
   deleteItem(item){
-    let temp = this.state.toDos
-    temp.splice (temp.indexOf(item), 1)
-    this.setState({toDos: temp})
-    console.log('removed: ', item)
+    // let temp = this.state.toDos
+    // temp.splice (temp.indexOf(item), 1)
+    // this.setState({toDos: temp})
+    // console.log('removed: ', item)
   }
+
+ 
 
   render(){
     return(
       <div className='ToDoWithClassComponent'>
         <p>To do list with class component</p>
-        <button onClick={() => {
-          console.log('toDos: ',this.state.toDos)
-          this.setState({toDos: []});}}>clear list</button>
+        <button onClick={() => { this.props.clearTasks();}}>clear list</button>
         <input placeholder='input to do here' type='text'
         onKeyDown={(e) => this.addElementToList(e)} />
         <ul>
-          {this.state.toDos.map((item) => (
-            <li className='toDoClassItem' key={item}>{item}            
+          {this.props.taskList.map((item) => (
+            <li className='toDoClassItem' key={item.id}>{item.task}            
 
-            <button className='toDoClassDone' onClick={() => this.deleteItem(item)}>Done</button>
+            <button className='toDoClassDone' onClick={() => this.props.removeTask(item)}>Done</button>
             </li>
           ))}
         </ul>
@@ -46,23 +64,44 @@ class ToDoWithClassComponent extends React.Component{
   }
 }
 
-class CounterWithClass extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = {count: 0}
-
-  }
-
-  render() {
-    return (
-      <div className='CounterWithClass'>
-        <p>Counter made as class component:</p><br />
-        <p>{this.state.count}</p>
-        <button onClick={ () => this.setState({count : this.state.count - 1})}>decrement 1</button>
-        <button onClick={ () => this.setState({count : this.state.count + 1})}>increment 1</button>
-      </div>
-    ) 
-    }
+const  mapStateToPropsCounter = (state) => {
+  const counter = state.counter;
+  return {
+    counter
+  };
 }
 
-export {ToDoWithClassComponent,CounterWithClass}
+const mapDispatchToPropsCounter = dispatch => ({
+  increment: () => dispatch({ type: 'INCREMENT' }),
+  decrement: () => dispatch({ type: 'DECREMENT' })
+ })
+
+class CounterWithClass extends React.Component {
+  // constructor(props) {
+  //   super(props)
+  //   // this.state = { count: 0 }
+
+  // }
+  
+  render() {
+    let counter = this.props.counter;
+    return (
+      <div className='CounterWithClass'>
+        <p>Counter made as class component:</p>
+        <p>{counter}</p>
+        <div className='buttons'>
+          <button onClick={() => this.props.decrement()}>decrement 1</button>
+          <button onClick={() => this.props.increment()}>increment 1</button>
+        </div>
+      </div>
+    )
+  }
+}
+
+
+
+
+ 
+// export  connect(mapStateToPropsCounter, mapDispatchToPropsCounter)(CounterWithClass)
+export default {ToDoWithClassComponent: connect(mapStateToPropsTask, mapDispatchToPropsTask)(ToDoWithClassComponent),
+                CounterWithClass: connect(mapStateToPropsCounter, mapDispatchToPropsCounter)(CounterWithClass)}

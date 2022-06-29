@@ -49,3 +49,28 @@
 .toDoClassItem{
   max-width: 10rem;
 }
+
+.CounterWithUseState .buttons{
+}
+
+.CounterWithUseState button, .CounterWithClass button{
+  position:sticky;
+  border: none;
+  border-radius: 1rem;
+  width: 6rem;
+  height: 2rem;
+  margin: 1rem;
+  background-color: rgba(32, 56, 59, 0.1);
+  font-size: 0.9rem;
+  transition-property: width, heigh, border-radius;
+  transition-duration: .3s;
+}
+
+.CounterWithUseState button:hover, .CounterWithClass button:hover{
+  background-color: rgba(128, 76, 42, 0.3);
+  font-size: 0.9rem;
+  /* scale: 1.25; */
+  border-radius: 0.5rem;
+  /* height: 2.5rem; */
+  width: 7rem; 
+}
