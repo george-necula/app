@@ -1,0 +1,51 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+
+#mainBody{
+  background-color: PINK;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  /* gap: 1rem; */
+  /* justify-items: center; */
+}
+
+
+.CounterWithClass{
+  background-color: steelblue;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  height: 50vh;
+}
+
+.CounterWithUseState{
+  background-color: steelblue;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  height: 50vh;
+}
+
+.toDoWithFunctionalComponent{
+  background-color: steelblue;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  height: 50vh;
+}
+
+.ToDoWithClassComponent{
+  background-color: steelblue;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  height: 50vh;
+}
+
+.toDoClassItem{
+  max-width: 10rem;
+}
