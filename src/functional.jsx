@@ -7,9 +7,10 @@ import * as taskListAC from './redux/actions/taskListAction'
 import * as counterAC from './redux/actions/counterAction'
 
 function ToDoWithFunctionalComponent() {
-  // const [list, setList] = useState({});
-  // const [count, setCount] = useState(0);
+  
   const [len, setLen] = useState(10)
+
+  //redux
   const taskList = useSelector((state) => state.taskList)
   const dispach = useDispatch()
   const { addTask, removeTask , clearTasks} = bindActionCreators(taskListAC, dispach)
