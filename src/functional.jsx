@@ -1,4 +1,4 @@
-import { React } from 'react'
+import { React, useState, useEffect, useRef } from 'react'
 
 //redux stuff
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,18 +9,44 @@ import * as counterAC from './redux/actions/counterAction'
 function ToDoWithFunctionalComponent() {
   // const [list, setList] = useState({});
   // const [count, setCount] = useState(0);
-
+  const [len, setLen] = useState(10)
   const taskList = useSelector((state) => state.taskList)
   const dispach = useDispatch()
   const { addTask, removeTask , clearTasks} = bindActionCreators(taskListAC, dispach)
-
 
   const generateKey = (pre) => {
     return `${pre}_${new Date().getTime()}`;
   }
 
+  
+
+  // function deleteItem(key) {
+  //   let temp = listlen
+  //   console.log('removed: ', temp[key])
+  //   delete temp[key]
+  //   setList(temp)
+  //   setCount(count + 1)
+  // }
+
+  function debug(){
+    const debugValues = ['banana', 'kiwi', 'fruit salad with pineapple and mango']
+    debugValues.map(fruit => addTask(generateKey(fruit), fruit))
+  }
+
+  
+
+  function max(a,b){
+    return (a > b) ? a : b
+  }
+
+  function widthSet(e){
+    const textLen = e.target.value.length;
+    console.log('test : ',max(10,textLen))
+    return max(10,textLen/2)
+  }
   function addElementToList(e) {
     // console.log(e.target.value)
+    setLen(widthSet(e))
     if (e.key === "Enter" && e.target.value) {
       const id = generateKey(e.target.value);
       const tempVal = e.target.value
@@ -31,25 +57,26 @@ function ToDoWithFunctionalComponent() {
     }
   }
 
-  // function deleteItem(key) {
-  //   let temp = list
-  //   console.log('removed: ', temp[key])
-  //   delete temp[key]
-  //   setList(temp)
-  //   setCount(count + 1)
-  // }
-
+  useEffect(() => {
+    debug()
+    
+  }, []);
+  
   return (
     <div className='toDoWithFunctionalComponent'>
       <p>To do list with functional component</p>
       {/* <p>Tasks done: {count}</p> */}
-      <button onClick={() => clearTasks()}>clear list</button>
-      <input type='text' placeholder='input to do item'
-        onKeyDown={(e) => addElementToList(e)} />
-      <ul>
+      <input  type='text' placeholder='input to do item' 
+      style={{width: len + 'rem'}}
+      onKeyDown={(e) => addElementToList(e)} 
+      maxLength='40'/>
+      <button className='clearButton' onClick={() => clearTasks()}>clear list</button>
+      <ul className='itemList'>
         {taskList.map((item) => (
-          <li key={item.id}>{item.task}
-            <button onClick={() => removeTask(item.id)}>Done</button></li>))}
+          <div className='item'>
+            <li className='itemValue' key={item.id}>{item.task}</li>
+            <button className='itemButton' onClick={() => removeTask(item.id)}>Done</button>
+          </div>))}
       </ul>
     </div>
   )

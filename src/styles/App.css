@@ -32,29 +32,26 @@
 
 .toDoWithFunctionalComponent{
   background-color: steelblue;
-  display: grid;
-  place-content: center;
-  justify-items: center;
+  padding-left: 3em;
+  /* display: grid; */
+  /* place-content: center;
+  justify-items: center; */
   height: 50vh;
 }
 
 .ToDoWithClassComponent{
   background-color: steelblue;
-  display: grid;
+  padding-left: 3em;
+  /* display: grid;
   place-content: center;
-  justify-items: center;
+  justify-items: center; */
   height: 50vh;
 }
 
-.toDoClassItem{
-  max-width: 10rem;
-}
 
-.CounterWithUseState .buttons{
-}
 
 .CounterWithUseState button, .CounterWithClass button{
-  position:sticky;
+  /* position:sticky; */
   border: none;
   border-radius: 1rem;
   width: 6rem;
@@ -74,3 +71,32 @@
   /* height: 2.5rem; */
   width: 7rem; 
 }
+
+.toDoWithFunctionalComponent input{
+  height: 2rem;
+}
+.toDoWithFunctionalComponent .clearButton{
+  margin-left: 3rem;
+}
+
+
+
+.toDoWithFunctionalComponent .itemList{
+  width: 99%;
+
+}.toDoWithFunctionalComponent .item{
+  display: flex;
+  margin: .1rem;
+  width: 100%;
+}
+
+.toDoWithFunctionalComponent .itemValue{
+  flex-grow: 2;
+}
+.toDoWithFunctionalComponent .itemButton{
+  height: 100%;
+  width: 3rem;
+  margin-right: 0.1rem;
+}
+
+

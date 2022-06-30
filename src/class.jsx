@@ -45,17 +45,17 @@ class ToDoWithClassComponent extends React.Component{
 
   render(){
     return(
-      <div className='ToDoWithClassComponent'>
+      <div className='toDoWithFunctionalComponent'>
         <p>To do list with class component</p>
-        <button onClick={() => { this.props.clearTasks();}}>clear list</button>
         <input placeholder='input to do here' type='text'
         onKeyDown={(e) => this.addElementToList(e)} />
-        <ul>
+        <button className='clearButton' onClick={() => { this.props.clearTasks();}}>clear list</button>
+        <ul className='itemList'>
           {this.props.taskList.map((item) => (
-            <li className='toDoClassItem' key={item.id}>{item.task}            
-
-            <button className='toDoClassDone' onClick={() => this.props.removeTask(item)}>Done</button>
-            </li>
+            <div className='item'>
+              <li className='itemValue' key={item.id}>{item.task} </li>
+              <button className='itemButton' onClick={() => this.props.removeTask(item)}>Done</button>
+            </div>
           ))}
         </ul>
 
