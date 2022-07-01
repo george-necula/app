@@ -1,23 +1,31 @@
 import React from 'react'
-import './styles/App.css'
+import './App.css'
 
 //custom componenet
 import ClassComponent from './class.jsx'
 import { ToDoWithFunctionalComponent, CounterWithUseState } from './functional'
 import { Automata } from './1dAutomata'
-
+import Navbar from './Navbar'
+import JokeSection from './JokeSection'
 
 function App() {
 
   return (
     <div id='mainBody'>
-      <div className='firstPane'>
-        <CounterWithUseState />
-        <ClassComponent.CounterWithClass />
-        <ToDoWithFunctionalComponent />
-        <ClassComponent.ToDoWithClassComponent />
-      </div>
-      <Automata />
+      <Navbar>
+        <div className='firstPane'>
+          <CounterWithUseState />
+          <ClassComponent.CounterWithClass />
+          <ToDoWithFunctionalComponent />
+          <ClassComponent.ToDoWithClassComponent />
+        </div>
+        <div className='secondPane'>
+          <Automata />
+        </div>
+        <div className='thirdPane'>
+          <JokeSection />
+        </div>
+      </Navbar>
     </div>
   );
 }
