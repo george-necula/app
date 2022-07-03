@@ -7,7 +7,7 @@ import { ToDoWithFunctionalComponent, CounterWithUseState } from './functional'
 import { Automata } from './1dAutomata'
 import Navbar from './Navbar'
 import JokeSection from './JokeSection'
-
+import ConwaysGameOfLife from './ConwaysGameOfLife'
 function App() {
 
   return (
@@ -24,6 +24,9 @@ function App() {
         </div>
         <div className='thirdPane'>
           <JokeSection />
+        </div>
+        <div className='fourthPane'>
+          <ConwaysGameOfLife />
         </div>
       </Navbar>
     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 
 const JokesSection = () => {
@@ -11,11 +11,7 @@ const JokesSection = () => {
   }
 
 
-  const generateKey = (pre) => {
-    return `${pre}_${new Date().getTime()}`;
-  }
-
-
+  
 
   const getJoke = (type) => {
 
@@ -27,6 +23,7 @@ const JokesSection = () => {
             if (data.value.length < 150) {
               setChuckJokes([...chuckJokes, { id: generateKey(), joke: data.value }])
             } else {
+              getJoke('chuck')
               console.log('joke too long')
             }
             break
@@ -41,6 +38,22 @@ const JokesSection = () => {
         console.log('error ', type, error)
       });
   }
+
+
+  const generateKey = (pre) => {
+    return `${pre}_${new Date().getTime()}`;
+  }
+  useEffect(() => {
+    // eslint-disable-next-line
+    getJoke('dad')
+    getJoke('chuck')
+    getJoke('dad')
+    getJoke('chuck')
+
+    
+  }, [])
+
+
 
   return (
     <div className="JokeSection">

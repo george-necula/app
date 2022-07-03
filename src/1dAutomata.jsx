@@ -12,16 +12,18 @@ const Menu = () => {
   const automata = useSelector((state) => state.automata)
   const dispach = useDispatch()
   const { restart, changeState, changeRule } = bindActionCreators(automataAC, dispach)
+
   return (
     <Draggable>
       <div className='automataMenu'>
         <p>Input rule: </p>
         <input type="text" placeholder="" onKeyDown={(e) => {
-          if (e.key === 'Enter'){
+          if (e.key === 'Enter') {
             changeRule(parseInt(e.target.value))
-            e.target.value = ''}
-        }} style={{width: '2rem'}}/>
-        <p style={{gridColumn: 'span 2'}}>Currently showing rule {automata.rule}</p>
+            e.target.value = ''
+          }
+        }} style={{ width: '2rem' }} />
+        <p style={{ gridColumn: 'span 2' }}>Currently showing rule {automata.rule}</p>
         <button onClick={() => changeState()}>{
           (!automata.playState) ? 'start' : 'stop'}</button>
         <button onClick={() => restart()}>Restart</button>
@@ -44,13 +46,13 @@ class Cell {
 }
 
 var screen_width
-  var screen_height
-  var cell_width
-  var cell_count_x
-  var cell_count_y
-  var cell_list = []
-  var cell_new_list = []
-  var row_count
+var screen_height
+var cell_width
+var cell_count_x
+var cell_count_y
+var cell_list = []
+var cell_new_list = []
+var row_count
 
 export const Automata = () => {
 
@@ -58,10 +60,10 @@ export const Automata = () => {
   const automata = useSelector((state) => state.automata)
   const dispach = useDispatch()
   const { restart, changeState, changeRule } = bindActionCreators(automataAC, dispach)
-  
+
   var rule = automata.rule
-  
-  
+
+
   const setup = (p5, canvasParentRef) => {
     // use parent to render the canvas in this ref
     // (without that p5 will render the canvas outside of your component)
@@ -79,6 +81,8 @@ export const Automata = () => {
     cell_list[Math.floor(cell_count_x / 2)].alive = 1
     // p5.background(200);
   };
+
+
 
   const draw = (p5) => {
 
@@ -107,7 +111,7 @@ export const Automata = () => {
     }
 
     if (automata.playState) {
-      console.log('something is happening')
+      // console.log('something is happening')
       for (let i = 1; i < cell_count_x - 1; i++) {
         if (cell_list[i].alive === '1') {
           p5.rect(i * cell_width, row_count * cell_width, cell_width, cell_width, 4, 4, 4, 4)
@@ -130,6 +134,12 @@ export const Automata = () => {
       row_count++
     }
   };
+
+  // const mp = (e) => {
+  //   var decision = (e.mouseY > 0) && (e.mouseY < window.innerHeight)
+  //   if (decision)
+  //     console.log(e.mouseX, e.mouseY)
+  // }
 
   return (
     <div className='Automata'>
