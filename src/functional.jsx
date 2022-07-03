@@ -59,7 +59,7 @@ function ToDoWithFunctionalComponent() {
   }
 
   useEffect(() => {
-    debug()
+    // debug()
     
   }, []);
   
@@ -75,7 +75,7 @@ function ToDoWithFunctionalComponent() {
       <ul className='itemList'>
         {taskList.map((item) => (
           <div className='item'>
-            <li className='itemValue' key={item.id}>{item.task}</li>
+            <li className='itemValue' key={() => generateKey(item.task)}>{item.task}</li>
             <button className='itemButton' onClick={() => removeTask(item.id)}>Done</button>
           </div>))}
       </ul>
@@ -86,7 +86,7 @@ function ToDoWithFunctionalComponent() {
 
 function CounterWithUseState() {
   // const [count, setCount] = useState(0)
-  //redux
+  //redu
   const counter = useSelector((state) => state.counter)
   const dispach = useDispatch();
   const { increment, decrement } = bindActionCreators(counterAC, dispach)

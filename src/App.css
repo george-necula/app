@@ -204,20 +204,33 @@ html::-webkit-scrollbar-thumb{
   height: 100vh;
   display: grid;
 }
-.chuckJokes{
+.chuckJokes, .dadJokes{
   display: flex;
-  align-items: baseline;
-  height: 50vh;
-  flex-wrap: wrap;
-  padding-left: 2rem;
+  /* align-items: baseline; */
+  flex-wrap: wrap; 
+  flex-direction: column;
+  /* display: grid;
+  grid-template-rows: 1fr 1fr; */
+  padding-left: 2rem;  
+  /* height: 50%; */
+  padding: 2rem;
+  gap: 1rem;
+  overflow: hidden;
+  min-height: 40vh;
 }
 
 .yoMamaJokes{
   padding-left: 2rem;
+  
 }
 .JokeCard{
   background-color: rgba(183, 183, 183, 0.5);
   width: 10rem;
-  /* max-height: 25vh; */
   border-radius: 1rem;
+  padding: 1rem;
+}
+
+.JokeCard:hover{
+  background-color: rgba(248, 119, 119, 0.5);
+
 }

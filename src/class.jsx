@@ -2,20 +2,20 @@ import React from 'react'
 import { connect } from 'react-redux/'
 
 
-const  mapStateToPropsTask = (state) => {
+const mapStateToPropsTask = (state) => {
   const taskList = state.taskList;
   return {
     taskList
   };
 }
 
-const mapDispatchToPropsTask = dispatch => ({
-  addTask: (item) => dispatch({ type: 'ADD_TASK' , payload: item}),
+const mapDispatchToPropsTask = (dispatch) => ({
+  addTask: (item) => dispatch({ type: 'ADD_TASK', payload: item }),
   removeTask: (item) => dispatch({ type: 'REMOVE_TASK', payload: item }),
-  clearTasks: () => dispatch({type: 'CLEAR_TASKS'})
- })
+  clearTasks: () => dispatch({ type: 'CLEAR_TASKS' })
+})
 
-class ToDoWithClassComponent extends React.Component{
+class ToDoWithClassComponent extends React.Component {
   // constructor(props){
   //   super(props)
   //   // this.state = {toDos : []}
@@ -25,35 +25,35 @@ class ToDoWithClassComponent extends React.Component{
     return `${pre}_${new Date().getTime()}`;
   }
 
-  addElementToList(e){
+  addElementToList(e) {
     // console.log(e.target.value)
     if (e.key === "Enter" && e.target.value) {
-      this.props.addTask({id: this.generateKey(e.target.value), task: e.target.value})
+      this.props.addTask({ id: this.generateKey(e.target.value), task: e.target.value })
       // console.log('added : ', e.target.value )
       e.target.value = ''
     }
   }
-  
-  deleteItem(item){
+
+  deleteItem(item) {
     // let temp = this.state.toDos
     // temp.splice (temp.indexOf(item), 1)
     // this.setState({toDos: temp})
     // console.log('removed: ', item)
   }
 
- 
 
-  render(){
-    return(
+
+  render() {
+    return (
       <div className='toDoWithFunctionalComponent'>
         <p>To do list with class component</p>
         <input placeholder='input to do here' type='text'
-        onKeyDown={(e) => this.addElementToList(e)} />
-        <button className='clearButton' onClick={() => { this.props.clearTasks();}}>clear list</button>
+          onKeyDown={(e) => this.addElementToList(e)} />
+        <button className='clearButton' onClick={() => { this.props.clearTasks(); }}>clear list</button>
         <ul className='itemList'>
           {this.props.taskList.map((item) => (
             <div className='item'>
-              <li className='itemValue' key={item.id}>{item.task} </li>
+              <li className='itemValue' key={() => this.generateKey(item.task)}>{item.task} </li>
               <button className='itemButton' onClick={() => this.props.removeTask(item)}>Done</button>
             </div>
           ))}
@@ -64,7 +64,7 @@ class ToDoWithClassComponent extends React.Component{
   }
 }
 
-const  mapStateToPropsCounter = (state) => {
+const mapStateToPropsCounter = (state) => {
   const counter = state.counter;
   return {
     counter
@@ -74,7 +74,7 @@ const  mapStateToPropsCounter = (state) => {
 const mapDispatchToPropsCounter = dispatch => ({
   increment: () => dispatch({ type: 'INCREMENT' }),
   decrement: () => dispatch({ type: 'DECREMENT' })
- })
+})
 
 class CounterWithClass extends React.Component {
   // constructor(props) {
@@ -82,7 +82,7 @@ class CounterWithClass extends React.Component {
   //   // this.state = { count: 0 }
 
   // }
-  
+
   render() {
     let counter = this.props.counter;
     return (
@@ -101,7 +101,9 @@ class CounterWithClass extends React.Component {
 
 
 
- 
+
 // export  connect(mapStateToPropsCounter, mapDispatchToPropsCounter)(CounterWithClass)
-export default {ToDoWithClassComponent: connect(mapStateToPropsTask, mapDispatchToPropsTask)(ToDoWithClassComponent),
-                CounterWithClass: connect(mapStateToPropsCounter, mapDispatchToPropsCounter)(CounterWithClass)}
+export default {
+  ToDoWithClassComponent: connect(mapStateToPropsTask, mapDispatchToPropsTask)(ToDoWithClassComponent),
+  CounterWithClass: connect(mapStateToPropsCounter, mapDispatchToPropsCounter)(CounterWithClass)
+}
