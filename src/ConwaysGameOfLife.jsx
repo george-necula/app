@@ -6,6 +6,7 @@ import Draggable from 'react-draggable'
 import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as gameOfLifeAC from './redux/actions/gameOfLifeAction'
+import { isMobile } from "react-device-detect";
 
 const Menu = () => {
 
@@ -14,7 +15,7 @@ const Menu = () => {
   const { clear, play } = bindActionCreators(gameOfLifeAC, dispach)
 
   return (
-    <Draggable>
+    <Draggable disabled={isMobile}>
       <div className='gameOfLifeMenu'>
         <p style={{ gridColumn: 'span 2' }}>Conway's Game Of Life</p>
         <button onClick={() => play()}>{
@@ -93,19 +94,6 @@ const ConwaysGameOfLife = () => {
     // print(cells)
 
     p5.frameRate(5)
-
-    // cnv.mousePressed((event) => {
-    //   console.log(event)
-    //   // var decision = (e.mouseY > 0)
-
-    //   // let x = Math.floor(e.mouseX / cellSize)
-    //   // let y = Math.floor(e.mouseY / cellSize)
-    //   // console.log(x, y)
-    //   // if (decision && control.play === false)
-    //   //   console.log(x, y)
-
-
-    // })
 
   }
 

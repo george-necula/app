@@ -48,7 +48,7 @@ class ToDoWithClassComponent extends React.Component {
       <div className='toDoWithFunctionalComponent'>
         <p>To do list with class component</p>
         <input placeholder='input to do here' type='text'
-          onKeyDown={(e) => this.addElementToList(e)} />
+          onKeyDown={(e) => this.addElementToList(e)} style={{ marginBottom: '1rem' }} />
         <button className='clearButton' onClick={() => { this.props.clearTasks(); }}>clear list</button>
         <ul className='itemList'>
           {this.props.taskList.map((item) => (

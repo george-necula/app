@@ -6,6 +6,7 @@ import Draggable from 'react-draggable'
 import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as automataAC from './redux/actions/automataAction'
+import { isMobile } from "react-device-detect";
 
 const Menu = () => {
 
@@ -14,8 +15,10 @@ const Menu = () => {
   const { restart, changeState, changeRule } = bindActionCreators(automataAC, dispach)
 
   return (
-    <Draggable>
+    <Draggable disabled={isMobile}>
       <div className='automataMenu'>
+        <p>{isMobile ? 'mobile' : 'notMobile'}</p>
+        <p style={{ gridColumn: 'span 2' }}>All posible rules <a target='_blank' href='https://mathworld.wolfram.com/ElementaryCellularAutomaton.html'>example</a></p>
         <p>Input rule: </p>
         <input type="text" placeholder="" onKeyDown={(e) => {
           if (e.key === 'Enter') {
@@ -29,7 +32,6 @@ const Menu = () => {
         <button onClick={() => restart()}>Restart</button>
       </div>
     </Draggable>
-
   )
 }
 
@@ -141,8 +143,28 @@ export const Automata = () => {
   //     console.log(e.mouseX, e.mouseY)
   // }
 
+  const mobileReady = () => {
+    console.log('ismobile: ', isMobile)
+    let menu
+    if (isMobile === true) {
+      console.log('mobile version')
+      menu = (<Menu />)
+    }
+    else {
+      console.log('desktop version')
+      menu = (
+        <Draggable>
+          <Menu />
+        </Draggable>
+      )
+    }
+
+    return menu
+  }
+
   return (
     <div className='Automata'>
+      {/* {mobileReady()} */}
       <Menu />
       <Sketch setup={setup} draw={draw} />
     </div>

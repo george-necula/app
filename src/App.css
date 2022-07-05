@@ -9,6 +9,13 @@ html{
   scrollbar-color: grey lightgrey ;
 }
 
+@media only screen and (max-device-width : 640px) {
+  *{
+    font-size: 0.7rem;
+  }
+
+}
+
 html::-webkit-scrollbar{
   background-color: steelblue;
   width: 1rem;
@@ -79,6 +86,7 @@ html::-webkit-scrollbar-thumb{
   place-content: center;
   justify-items: center; */
   height: 50vh;
+  display: flex;
 }
 
 
@@ -103,6 +111,12 @@ html::-webkit-scrollbar-thumb{
   border-radius: 0.5rem;
   /* height: 2.5rem; */
   width: 7rem; 
+}
+
+@media only screen and (max-device-width : 640px){
+  .CounterWithUseState button:hover, .CounterWithClass button:hover{
+    width: 6rem;
+  }
 }
 
 .toDoWithFunctionalComponent input{
@@ -178,7 +192,7 @@ html::-webkit-scrollbar-thumb{
 }
 
 .Navbar:hover{
-  left: 0;
+  /* left: 0; */
 }
 
 
@@ -192,6 +206,47 @@ html::-webkit-scrollbar-thumb{
 .Navbar button:hover{
   border-radius: 1rem;
   background-color: rgba(0, 0, 0, 0.3);
+
+}
+
+.NavbarButton{
+  display: none;
+  width: 4rem;
+  height: 4rem;
+  background-color: aquamarine;
+}
+
+.NavbarSelected{
+  left: 0;
+}
+
+@media only screen and (max-device-width : 640px) {
+  *{
+    font-size: 0.7rem;
+  }
+
+  .NavbarSelected{
+    left: 0 !important;
+  }
+
+  .Navbar{
+    left: -10rem
+  }
+
+  .NavbarButton{
+    display: grid;
+    justify-content: center;
+    position: fixed;
+    margin-left: 10rem;
+  }
+
+  .NavbarButton img{
+    width: 80%;
+    justify-self: center;
+    align-self: center;
+  }
+
+  
 
 }
 
